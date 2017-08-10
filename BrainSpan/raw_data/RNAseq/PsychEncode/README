@@ -1,0 +1,9 @@
+Data processed as part of the PsychEncode unified pipeline
+
+Aligned with STAR to hg19 with Gencode v19 annotations
+Quantification via RSEM
+
+QC via PicardTools, RSeqCQ
+
+
+
