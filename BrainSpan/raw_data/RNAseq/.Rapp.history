@@ -1,0 +1,93 @@
+load("/Users/mgandal/Dropbox/GeschwindLab/Projects/SCZ_ASD_Neurdev/data/BrainSpan_CR_filtered.rda")
+ls()
+head(datExpr)
+load("/Users/mgandal/Dropbox/GeschwindLab/Projects/SCZ_ASD_Neurdev/data/BrainSpan_CR_filtered.rda")
+rm(list=ls())
+load("/Users/mgandal/Dropbox/GeschwindLab/Projects/SCZ_ASD_Neurdev/data/BrainSpan_CR_filtered.rda")
+ls()
+head(datExpr)
+load("/Users/mgandal/Dropbox/Github/CrossDisorder_GWAS_annotation/data/BrainSpan_CR_filtered.rda")
+ls()
+dim(datExpr)
+head(datMeta)
+ls
+ls()
+head(datMeta)
+load("/Users/mgandal/Dropbox/Github/CommonDatasets/BrainSpan/raw_data/RNAseq/se.BrainSpan.RData")
+rm(list=ls())
+load("/Users/mgandal/Dropbox/Github/CommonDatasets/BrainSpan/raw_data/RNAseq/se.BrainSpan.RData")
+setwd("/Users/mgandal/Dropbox/Github/CommonDatasets/BrainSpan/raw_data/RNAseq/")
+ls()
+dim(datSeq)
+se.BrainSpan
+datExpr.counts = assays(se.BrainSpan)$counts
+datExpr.counts = assay(se.BrainSpan)$counts
+library(SummarizedExperiment)
+datExpr.counts = assay(se.BrainSpan)$counts
+datExpr.counts = assays(se.BrainSpan)$counts
+datExpr.tpm = assays(se.BrainSpan)$tpm
+datMeta = colData(se.BrainSpan)
+head(datmeta)
+head(datMeta)
+datMeta = data.frame(colData(se.BrainSpan))
+head(datMeta)
+datSeq = datSeq[match(colnames(counts), rownames(datSeq)),]#
+var = apply(datSeq,2,var,na.rm=T);  missing = colSums(is.na(datSeq))#
+to_keep = !is.na(var) & (var>0) & (missing == 0)#
+dS = datSeq[match(rownames(datMeta), rownames(datSeq)),to_keep]#
+#
+PC= prcomp(dS,scale. = T)#
+for(i in 1:20) datMeta[,paste0("seqPC",i)] = PC$x[,i]
+ls()
+load("./se.BrainSpan.RData")
+dim(datSeq)
+var = apply(datSeq,2,var,na.rm=T);  missing = colSums(is.na(datSeq))#
+to_keep = !is.na(var) & (var>0) & (missing == 0)#
+dS = datSeq[match(rownames(datMeta), rownames(datSeq)),to_keep]
+dim(dS)
+PC= prcomp(dS,scale. = T)#
+for(i in 1:20) datMeta[,paste0("seqPC",i)] = PC$x[,i]
+plot(se.BrainSpan$seqPC1, PC$x[,1])
+plot(se.BrainSpan$seqPC2, PC$x[,2])
+varexp <- (PC$sdev)^2 / sum(PC$sdev^2)
+varexp
+sum(varexp[1:5])
+sum(varexp[1:10])
+sum(varexp[1:12])
+sum(varexp[1:13])
+sum(varexp[1:14])
+ls()
+write.csv(file="./datMeta.csv", datMeta)
+write.csv(file="./datSeq.csv", datSeq)
+write.csv(file="./counts.csv", datExpr.counts)
+head(datExpr.counts)
+ls()
+write.csv(file="tpm.csv", datExpr.tpm)
+hist(datSeq$Picard_MarkDuplicates_Read_pair_optical_duplicates)
+datSeq$Picard_MarkDuplicates_Read_pair_optical_duplicates
+datSeq$Picard_MarkDuplicates_Read_pair_duplicates
+head(datSeq)
+datSeq$ChrM_percent
+hist(datSeq$ChrM_percent)
+dS
+plot(hclust(dist(t(scale(dS)))()
+plot(hclust(dist(t(scale(dS)))())
+plot(hclust(dist(t(scale(dS))))
+)
+plot(hclust(dist((scale(dS)))))
+plot(hclust(dist((scale(dS))),method="average"))
+cor(datMeta$seqPC1, datSeq$Picard_CollectRnaSeqMetrics_Median_5prime_to_3prime_bias)
+cor(datMeta$seqPC2, datSeq$Picard_CollectRnaSeqMetrics_Median_5prime_to_3prime_bias)
+cor(datMeta$seqPC3, datSeq$Picard_CollectRnaSeqMetrics_Median_5prime_to_3prime_bias)
+cor(datMeta$seqPC1, datSeq$Picard_CollectRnaSeqMetrics_Median_5prime_bias)
+cor(datMeta$seqPC1, datSeq$Picard_CollectRnaSeqMetrics_Median_3prime_bias)
+cor(datMeta$seqPC1, datSeq$Picard_CollectRnaSeqMetrics_Median_3prime_bias,method="spearman")
+cor(datMeta$seqPC2, datSeq$Picard_CollectRnaSeqMetrics_Median_3prime_bias,method="spearman")
+cor(datMeta$seqPC3, datSeq$Picard_CollectRnaSeqMetrics_Median_3prime_bias,method="spearman")
+plot(hclust(dist(PC$x[,1:10])))
+plot(hclust(dist(PC$x[,1:10]),method="average"))
+plot(hclust(as.dist(1-bicor(PC$x[,1:10])),method="average"))
+library(WGCNA)
+plot(hclust(as.dist(1-bicor(PC$x[,1:10])),method="average"))
+plot(hclust(as.dist(1-bicor(t(PC$x[,1:10]))),method="average"))
+plot(hclust(as.dist(1-bicor(t(PC$x))),method="average"))
