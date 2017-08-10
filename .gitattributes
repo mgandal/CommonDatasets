@@ -1,3 +1,6 @@
 *.RData filter=lfs diff=lfs merge=lfs -text
 *.csv filter=lfs diff=lfs merge=lfs -text
+<<<<<<< HEAD
 *.txt filter=lfs diff=lfs merge=lfs -text
+=======
+>>>>>>> c6c9571452b7113dba2bdead6f2bf79d686161f4
